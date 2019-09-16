@@ -17,6 +17,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".android.CreateToDoActivity"/>
+
     </application>
 
 </manifest>

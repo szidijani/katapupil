@@ -7,21 +7,16 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/packageId"
+        android:id="@+id/message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="23432"/>
+        tools:text="Don't forget to go shopping!"/>
 
     <TextView
-        android:id="@+id/contentType"
+        android:id="@+id/created"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="documents"/>
-
-    <TextView
-        android:id="@+id/value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="80"/>
+        android:layout_marginBottom="5dp"
+        tools:text="2019.09.15. 14:36"/>
 
 </LinearLayout>
