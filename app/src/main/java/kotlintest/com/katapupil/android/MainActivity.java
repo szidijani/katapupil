@@ -17,6 +17,9 @@ import kotlintest.com.katapupil.todo.ToDoItem;
 
 public class MainActivity extends Activity {
 
+    public static final int LIST_NEW_ITEM_REQUEST_CODE = 234;
+    public static final String NEW_ITEM_BUNDLE_KEY = "newItemBundleKey";
+
     RecyclerView toDoListView;
 
     ToDoAdapter adapter;
@@ -32,19 +35,28 @@ public class MainActivity extends Activity {
         toDoListView.setLayoutManager(new LinearLayoutManager(this));
 
         items = new ArrayList<>();
-        items.add(new ToDoItem("Go shopping!"));
-        items.add(new ToDoItem("Pay bills!"));
-        items.add(new ToDoItem("Go to bank!"));
 
         LayoutInflater inflater = LayoutInflater.from(this);
-
         adapter = new ToDoAdapter(inflater, items);
-
         toDoListView.setAdapter(adapter);
     }
 
-    public void onGoCreateClicked(View button) {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
 
-        startActivity(new Intent(this, CreateToDoActivity.class));
+        if (requestCode == LIST_NEW_ITEM_REQUEST_CODE) {
+            Bundle bundle = intent.getExtras();
+
+            String toDoText = bundle.getString(NEW_ITEM_BUNDLE_KEY);
+
+            ToDoItem newItem = new ToDoItem(toDoText);
+            items.add(newItem);
+            adapter.notifyDataSetChanged();
+        }
+    }
+
+    public void onGoCreateClicked(View button) {
+        startActivityForResult(new Intent(this, CreateToDoActivity.class), LIST_NEW_ITEM_REQUEST_CODE);
     }
 }
