@@ -8,6 +8,7 @@ public class MasodikFeladat {
     public static void main(String[] args) {
 
         Part kipufogo = new Part("H73");
+        Part kipuf2 = kipufogo;
         Part kerek = new Part("A71");
         Part szelvedo = new Part("A13");
         Part balElsoLampa = new Part("D22");

@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.List;
 import kotlintest.com.katapupil.R;
 import kotlintest.com.katapupil.todo.ToDoItem;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements View.OnClickListener {
 
     public static final int LIST_NEW_ITEM_REQUEST_CODE = 234;
     public static final String NEW_ITEM_BUNDLE_KEY = "newItemBundleKey";
@@ -39,6 +40,9 @@ public class MainActivity extends Activity {
         LayoutInflater inflater = LayoutInflater.from(this);
         adapter = new ToDoAdapter(inflater, items);
         toDoListView.setAdapter(adapter);
+
+        Button goCreateButton = findViewById(R.id.goCreateButton);
+        goCreateButton.setOnClickListener(this);
     }
 
     @Override
@@ -58,5 +62,10 @@ public class MainActivity extends Activity {
 
     public void onGoCreateClicked(View button) {
         startActivityForResult(new Intent(this, CreateToDoActivity.class), LIST_NEW_ITEM_REQUEST_CODE);
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }
